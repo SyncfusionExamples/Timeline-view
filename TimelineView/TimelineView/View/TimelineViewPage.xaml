@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TimelineView.TimelineViewPage"
+             xmlns:local="clr-namespace:TimelineView"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms">
+    <ContentPage.Content>
+        <syncfusion:SfSchedule
+                x:Name="schedule"
+                ScheduleView="TimelineView"
+                DataSource="{Binding Events}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+
+            <syncfusion:SfSchedule.HeaderStyle>
+                <syncfusion:HeaderStyle BackgroundColor="#8490f9"
+                                        TextColor="Black"/>
+            </syncfusion:SfSchedule.HeaderStyle>
+            
+            <syncfusion:SfSchedule.ViewHeaderStyle>
+                <syncfusion:ViewHeaderStyle BackgroundColor="#a9b1fc"
+                                            DateTextColor="Black"/>
+            </syncfusion:SfSchedule.ViewHeaderStyle>
+
+            <syncfusion:SfSchedule.TimelineViewSettings>
+                <syncfusion:TimelineViewSettings
+                    DaysCount="10"
+                    AppointmentHeight="200"
+                    BorderWidth="2"
+                    BorderColor="#8490f9"
+                    Color="#e8eaf9"
+                    NonWorkingsDays="{Binding NonWorkingDays}">
+                    
+                    <syncfusion:TimelineViewSettings.LabelSettings>
+                        <syncfusion:TimelineLabelSettings TimeLabelColor="Black"/>
+                    </syncfusion:TimelineViewSettings.LabelSettings>
+                    
+                </syncfusion:TimelineViewSettings>
+            </syncfusion:SfSchedule.TimelineViewSettings>
+
+            <syncfusion:SfSchedule.SpecialTimeRegions>
+                <syncfusion:TimeRegionSettings 
+                    StartHour="13" 
+                    EndHour="14" 
+                    Text="Lunch"
+                    CanEdit="False"
+                    Color="#eaeaea"
+                    TextColor="Black"/>
+            </syncfusion:SfSchedule.SpecialTimeRegions>
+
+            <syncfusion:SfSchedule.AppointmentMapping>
+                <syncfusion:ScheduleAppointmentMapping
+                        ColorMapping="Color"
+                        EndTimeMapping="To"
+                        IsAllDayMapping="IsAllDay"
+                        StartTimeMapping="From"
+                        SubjectMapping="EventName"
+                        MinHeightMapping="MinimumHeight"
+                        StartTimeZoneMapping="StartTimeZone"
+                        EndTimeZoneMapping="EndTimeZone"/>
+            </syncfusion:SfSchedule.AppointmentMapping>
+
+            <syncfusion:SfSchedule.BindingContext>
+                <local:EventsViewModel/>
+            </syncfusion:SfSchedule.BindingContext>
+
+        </syncfusion:SfSchedule>
+    </ContentPage.Content>
+</ContentPage>
